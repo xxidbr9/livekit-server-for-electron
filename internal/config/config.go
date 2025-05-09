@@ -30,7 +30,7 @@ func Load() (*Config, error) {
 
 	livekitURL := os.Getenv("LIVEKIT_URL")
 	if livekitURL == "" {
-		livekitURL = "ws://localhost:7880" // Default LiveKit URL
+		livekitURL = "http://localhost:7880" // Default LiveKit URL
 	}
 
 	apiKey := os.Getenv("LIVEKIT_API_KEY")

@@ -34,6 +34,7 @@ func NewRoomGenerator(cfg *config.Config, tokenGenerator TokenLiveKitInterface) 
 		config:         cfg,
 		TokenGenerator: tokenGenerator,
 		roomClient:     roomClient,
+		rooms:          make(map[string]*livekitSdk.Room),
 	}
 }
 

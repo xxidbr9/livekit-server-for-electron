@@ -42,18 +42,25 @@ func CreateRoom(c *fiber.Ctx) error {
 	}
 	identity := req.Identity
 
-	room, err := roomService.GenerateRoom(roomName, identity)
+	token, err := roomService.GenerateRoom(roomName, identity)
 
 	if err != nil {
 		return err
 	}
 
 	return c.JSON(fiber.Map{
-		"message": "room created",
+		"message": "token with room created",
 		"data": fiber.Map{
-			"room": room,
+			"room": fiber.Map{
+				"room_name": roomName,
+			},
+			"identity": identity,
+			"token":    token,
 		},
 	})
 }
 
 // TODO: rest
+// func GetRooms(c *fiber.Ctx) error {
+
+// }

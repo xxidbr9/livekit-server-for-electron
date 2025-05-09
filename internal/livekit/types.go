@@ -9,18 +9,16 @@ var (
 	ErrRoomNotFound = errors.New("room not found")
 )
 
-// Room represents a LiveKit room
-type Room struct {
-	Name       string `json:"name"`
-	NumClients int    `json:"numClients"`
-	CreatedAt  int64  `json:"createdAt"`
+type RoomResponse struct {
+	RoomName string `json:"room_name"`
+	Token    string `token:"token"`
+	Identity string `json:"identity"`
 }
 
 // TokenRequest represents a request for a LiveKit token
 type TokenRequest struct {
-	RoomName     string `json:"roomName"`
+	RoomName     string `json:"room_name"`
 	Identity     string `json:"identity"`
-	CanPublish   *bool  `json:"canPublish"`
-	CanSubscribe *bool  `json:"canSubscribe"`
+	CanPublish   *bool  `json:"can_publish"`
+	CanSubscribe *bool  `json:"can_subscribe"`
 }
-

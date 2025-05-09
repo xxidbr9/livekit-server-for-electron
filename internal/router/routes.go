@@ -1,8 +1,6 @@
 package router
 
 import (
-	"strings"
-
 	"github.com/go-zoox/fetch"
 	"github.com/gofiber/fiber/v2"
 	"github.com/xxidbr9/livekit-server-for-electron/internal/config"
@@ -41,8 +39,7 @@ func SetupRoutes(app *fiber.App) {
 			})
 		}
 
-		liveKitServerUrl := strings.ReplaceAll(cfg.LiveKitURL, "ws", "http")
-		response, err := fetch.Get(liveKitServerUrl)
+		response, err := fetch.Get(cfg.LiveKitURL)
 		if err != nil {
 			panic(err)
 		}
