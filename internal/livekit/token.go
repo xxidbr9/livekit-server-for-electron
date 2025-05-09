@@ -29,10 +29,6 @@ func (g *TokenGenerator) GenerateToken(roomName, identity string, canPublish, ca
 		CanSubscribe: canSubscribe,
 	}
 
-	// at.AddGrant(grant).
-	// 	SetIdentity(identity).
-	// 	SetValidFor(24 * time.Hour) // Token valid for 24 hours
-
 	at.SetVideoGrant(grant).
 		SetIdentity(identity).
 		SetValidFor(24 * time.Hour)

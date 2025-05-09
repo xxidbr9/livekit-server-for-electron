@@ -24,7 +24,3 @@ type TokenRequest struct {
 	CanSubscribe *bool  `json:"canSubscribe"`
 }
 
-// TokenResponse represents a response containing a LiveKit token
-type TokenResponse struct {
-	Token string `json:"token"`
-}

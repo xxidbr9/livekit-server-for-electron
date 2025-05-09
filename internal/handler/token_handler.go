@@ -48,7 +48,10 @@ func GenerateToken(c *fiber.Ctx) error {
 		})
 	}
 
-	return c.JSON(livekit.TokenResponse{
-		Token: token,
+	return c.JSON(fiber.Map{
+		"message": "token created",
+		"data": fiber.Map{
+			"token": token,
+		},
 	})
 }

@@ -11,10 +11,11 @@ func SetupRoutes(app *fiber.App) {
 	api := app.Group("/api")
 
 	// Room routes
-	// roomRoutes := api.Group("/rooms")
+	roomRoutes := api.Group("/rooms")
+	roomRoutes.Post("/", handler.CreateRoom)
+
 	// roomRoutes.Get("/", handler.GetRooms)
 	// roomRoutes.Get("/:id", handler.GetRoom)
-	// roomRoutes.Post("/", handler.CreateRoom)
 	// roomRoutes.Delete("/:id", handler.DeleteRoom) // for force to close all participants
 
 	// Token routes
