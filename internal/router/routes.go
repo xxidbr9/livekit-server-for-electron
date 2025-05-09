@@ -1,7 +1,11 @@
 package router
 
 import (
+	"strings"
+
+	"github.com/go-zoox/fetch"
 	"github.com/gofiber/fiber/v2"
+	"github.com/xxidbr9/livekit-server-for-electron/internal/config"
 	"github.com/xxidbr9/livekit-server-for-electron/internal/handler"
 )
 
@@ -25,11 +29,29 @@ func SetupRoutes(app *fiber.App) {
 	// WebSocket route for real-time updates
 	// app.Get("/ws", handler.HandleWebSocket)
 
-  // Webhook route
-  // app.Post("/webhook", handler.HandleWebhook)
+	// Webhook route
+	// app.Post("/webhook", handler.HandleWebhook)
 
 	// Health check
 	app.Get("/health", func(c *fiber.Ctx) error {
+		cfg, err := config.Load()
+		if err != nil {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"error": err,
+			})
+		}
+
+		liveKitServerUrl := strings.ReplaceAll(cfg.LiveKitURL, "ws", "http")
+		response, err := fetch.Get(liveKitServerUrl)
+		if err != nil {
+			panic(err)
+		}
+		if response.StatusCode() != 200 {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"error": err,
+			})
+		}
+
 		return c.JSON(fiber.Map{
 			"status": "ok",
 		})
